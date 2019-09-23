@@ -2,13 +2,8 @@ kind: pipeline
 name: default
 
 steps:
-- name: shellcheck
-  image: ubuntu:18.04
-  commands:
-  - apt-get update && apt-get install shellcheck
-  - shellcheck *.sh 
 - name: runplaybook
   image: ubuntu:18.04
   commands: 
-  - ./setupansible.sh
-  - ./runplaybook.sh -e
+  - ./ubuntu/setupansible.sh
+  - ./ubuntu/runplaybook.sh -e

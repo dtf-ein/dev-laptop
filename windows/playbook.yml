@@ -1,0 +1,22 @@
+---
+- hosts: windows
+
+  tasks:
+  - name: Install Windows developer tools
+    win_chocolatey:
+      name: '{{ item }}'
+      state: present
+    register: result
+    until: result.rc == 0
+    retries: 3
+    delay: 10
+    loop:
+    - 7zip.install
+    - azure-cli
+    - git
+    - googlechrome
+    - mobaxterm
+    - nodejs
+    - notepadplusplus
+    - terraform
+    - vscode  
