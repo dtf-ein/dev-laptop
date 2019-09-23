@@ -6,5 +6,6 @@ steps:
   image: ubuntu:18.04
   commands:
   - cd ./ubuntu
+  - chmod +rx *.sh
   - ./setupansible.sh
   - ./runplaybook.sh -e
