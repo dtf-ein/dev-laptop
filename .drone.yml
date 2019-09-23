@@ -1,10 +1,7 @@
+---
 kind: pipeline
 type: docker
-name: linux
-
-platform:
-  os: linux
-  arch: arm64
+name: build
   
 steps:
 - name: Build Ubuntu
@@ -13,23 +10,5 @@ steps:
   - cd ./ubuntu
   - ./setupansible.sh
   - ansible-lint ../ubuntu/playbook.yml
-  - ansible-lint ../windows/playbook.yml
-  - ansible-playbook ../windows/playbook.yml --syntax-check    
+  - ansible-lint ../windows/playbook.yml  
   - ./runplaybook.sh -e
-
----
-kind: pipeline
-type: docker
-name: windows
-
-platform:
-  os: windows
-  arch: amd64
-  version: 1809
-
-steps:
-- name: Build Windows
-  image: mcr.microsoft.com/windows/servercore:1809
-  commands:
-  - cd ./windows
-  - ./setupssh.ps1
