@@ -4,6 +4,7 @@ name: linux
 
 platform:
   os: linux
+  arch: arm64
 
 - name: Build Ubuntu
   image: ubuntu:18.04
