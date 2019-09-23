@@ -1,11 +1,33 @@
 kind: pipeline
-name: default
+type: docker
+name: linux
 
-steps:
-- name: runplaybook
+platform:
+  os: linux
+
+- name: Build Ubuntu
   image: ubuntu:18.04
   commands:
   - cd ./ubuntu
-  - chmod +rx *.sh
   - ./setupansible.sh
+  - ansible-lint ./ubuntu/playbook.yml
+  - ansible-lint ./windows/playbook.yml
+  - ansible-playbook ./ubuntu/playbook.yml --syntax-check
+  - ansible-playbook ./windows/playbook.yml --syntax-check    
   - ./runplaybook.sh -e
+
+---
+kind: pipeline
+type: docker
+name: windows
+
+platform:
+  os: windows
+  arch: amd64
+  version: 1809
+
+- name: Build Windows
+  image: mcr.microsoft.com/windows/servercore:1809
+  commands:
+  - cd ./windows
+  - ./setupssh.ps1
