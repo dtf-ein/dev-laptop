@@ -4,6 +4,7 @@ name: default
 steps:
 - name: runplaybook
   image: ubuntu:18.04
-  commands: 
-  - ./ubuntu/setupansible.sh
-  - ./ubuntu/runplaybook.sh -e
+  commands:
+  - cd ./ubuntu
+  - ./setupansible.sh
+  - ./runplaybook.sh -e
