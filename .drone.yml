@@ -5,16 +5,16 @@ name: linux
 platform:
   os: linux
   arch: arm64
-
+  
+steps:
 - name: Build Ubuntu
   image: ubuntu:18.04
   commands:
   - cd ./ubuntu
   - ./setupansible.sh
-  - ansible-lint ./ubuntu/playbook.yml
-  - ansible-lint ./windows/playbook.yml
-  - ansible-playbook ./ubuntu/playbook.yml --syntax-check
-  - ansible-playbook ./windows/playbook.yml --syntax-check    
+  - ansible-lint ../ubuntu/playbook.yml
+  - ansible-lint ../windows/playbook.yml
+  - ansible-playbook ../windows/playbook.yml --syntax-check    
   - ./runplaybook.sh -e
 
 ---
@@ -27,6 +27,7 @@ platform:
   arch: amd64
   version: 1809
 
+steps:
 - name: Build Windows
   image: mcr.microsoft.com/windows/servercore:1809
   commands:
