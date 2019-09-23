@@ -1,7 +1,7 @@
 ---
 - name: "Ubuntu Server developer laptop"
   hosts: localhost
-  sudo: true
+  become: true
   roles:
     - role: geerlingguy.nodejs
     - role: geerlingguy.docker
