@@ -10,5 +10,6 @@ steps:
   - cd ./ubuntu
   - ./setupansible.sh
   - ansible-lint ../ubuntu/playbook.yml
-  - ansible-lint ../windows/playbook.yml  
+  - ansible-lint ../windows/playbook-dev.yml
+  - ansible-lint ../windows/playbook-ssh.yml 
   - ./runplaybook.sh -e

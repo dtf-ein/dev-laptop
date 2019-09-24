@@ -1,0 +1,43 @@
+---
+- hosts: windows
+
+  tasks:
+  - name: Make .ssh directory
+    win_file:
+      path: .ssh
+      state: directory
+
+  - name: Create authorized_keys file
+    win_file:
+      path: .ssh\authorized_keys
+      state: touch
+
+  - name: Add public key to authorized_keys
+    win_lineinfile:
+      path: .ssh\authorized_keys
+      line: "{{ pubkey }}"
+
+  - name: Update OpenSSH config (PubKey auth)
+    win_lineinfile:
+      path: c:\ProgramData\ssh\sshd_config
+      regexp: '^PubkeyAuthentication yes'
+      line: PubkeyAuthentication yes
+      state: present
+
+  - name: Update OpenSSH config (remove match group admins)
+    win_lineinfile:
+      path: c:\ProgramData\ssh\sshd_config
+      line: Match Group administrators
+      state: absent
+
+  - name: Update OpenSSH config (remove match group admins)
+    win_lineinfile:
+      path: c:\ProgramData\ssh\sshd_config
+      regexp: '^.*AuthorizedKeysFile __PROGRAMDATA__/ssh/administrators_authorized_keys'
+      line: AuthorizedKeysFile __PROGRAMDATA__/ssh/administrators_authorized_keys
+      state: absent
+
+  - name: Restart SSH service
+    win_service:
+      name: sshd
+      state: restarted
