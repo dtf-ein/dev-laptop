@@ -4,12 +4,10 @@ type: docker
 name: build
   
 steps:
-- name: Build Ubuntu
+- name: Build
   image: ubuntu:18.04
   commands:
-  - cd ./ubuntu
-  - ./setupansible.sh
-  - ansible-lint ../ubuntu/playbook.yml
-  - ansible-lint ../windows/playbook-dev.yml
-  - ansible-lint ../windows/playbook-ssh.yml 
-  - ./runplaybook.sh -e
+  - ./scripts/setup-debian.sh
+  - ansible-lint ./developer.yml
+  - ansible-galaxy install -r ./requirements.yml
+  - ansible-playbook developer.yml --connection=local --extra-vars="pubkey='pubkey-sha'"

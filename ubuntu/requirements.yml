@@ -1,5 +1,0 @@
----
-  - src: geerlingguy.nodejs
-  - src: huxoll.azure-cli
-  - src: geerlingguy.docker
-  - src: andrewrothstein.terraform

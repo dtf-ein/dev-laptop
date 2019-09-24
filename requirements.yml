@@ -1,0 +1,8 @@
+---
+
+  - src: geerlingguy.nodejs
+  - src: geerlingguy.docker
+  - src: huxoll.azure-cli
+  - src: ngetchell.vscode
+  - src: andrewrothstein.terraform
+  - src: pixelart.chrome

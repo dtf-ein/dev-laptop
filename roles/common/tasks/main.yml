@@ -1,0 +1,11 @@
+---
+
+- name: Configure SSH public key authentication
+  import_tasks: ssh-windows.yml
+  when: ansible_facts['os_family'] == 'Windows'
+- import_tasks: ssh-debian.yml
+  when: ansible_facts['os_family'] == 'Debian'
+
+#- name: Enable RDP
+#  import_tasks: xrdp-debian.yml
+#  when: ansible_facts['os_family'] == 'Debian'  

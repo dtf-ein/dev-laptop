@@ -1,0 +1,7 @@
+---
+
+- name: Install developer tools
+  import_tasks: dev-windows.yml
+  when: ansible_facts['os_family'] == 'Windows'
+- import_tasks: dev-debian.yml
+  when: ansible_facts['os_family'] == 'Debian'
