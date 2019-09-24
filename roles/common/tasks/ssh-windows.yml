@@ -27,7 +27,7 @@
     path: c:\ProgramData\ssh\sshd_config
     regexp: '^AuthorizedKeysFile\s+\.ssh/authorized_keys'
     line: AuthorizedKeysFile .ssh/authorized_keys
-    state: present    
+    state: present
 
 - name: Update OpenSSH config (Remove match group admins)
   win_lineinfile:

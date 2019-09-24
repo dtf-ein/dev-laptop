@@ -10,4 +10,4 @@ steps:
   - ./scripts/setup-debian.sh
   - ansible-lint ./developer.yml
   - ansible-galaxy install -r ./requirements.yml
-  - ansible-playbook developer.yml --connection=local --extra-vars="pubkey='pubkey-sha'"
+  - ansible-playbook developer.yml --extra-vars="host=localhost pubkey='ssh-rsa PubKey'"

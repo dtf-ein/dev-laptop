@@ -1,13 +1,18 @@
 ---
 
 - name: Ubuntu developer tools
-  become: true
-  roles:
-    - role: geerlingguy.nodejs
-    - role: geerlingguy.docker
-    - role: huxoll.azure-cli
-    - role: ngetchell.vscode
-    - role: andrewrothstein.terraform
-    - role: pixelart.chrome
+  include_role:
+    name: "{{ galaxy_role }}"
+  loop:
+    - geerlingguy.nodejs
+    - geerlingguy.docker
+    - huxoll.azure-cli
+    - ngetchell.vscode
+    - andrewrothstein.terraform
+    - pixelart.chrome
+  loop_control:
+    loop_var: galaxy_role
   vars:
-    - nodejs_version: "10.x" #latest LTS version of Nodejs
+    - ansible_become: yes
+    - nodejs_version: "10.x"
+

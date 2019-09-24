@@ -1,40 +1,5 @@
----
-
-- hosts: windows
-
-  tasks:
-  - name: Make .ssh directory
-    file:
-      path: ~/.ssh
-      state: directory
-
-  - name: Create authorized_keys file
-    file:
-      path: ~/.ssh/authorized_keys
-      state: touch
-
-  - name: Add public key to authorized_keys
-    lineinfile:
-      path: ~/.ssh/authorized_keys
-      line: "{{ pubkey }}"
-
-  - name: Update OpenSSH config (PubKey auth)
-    become: yes
-    lineinfile:
-      path: /etc/ssh/sshd_config
-      regexp: '^PubkeyAuthentication yes'
-      line: PubkeyAuthentication yes
-      state: present
-
-  - name: Update OpenSSH config (AuthorizedKey file)
-    become: yes
-    lineinfile:
-      path: /etc/ssh/sshd_config
-      regexp: '^AuthorizedKeysFile\s+\.ssh/authorized_keys'
-      line: AuthorizedKeysFile .ssh/authorized_keys
-      state: present      
-
-  - name: Restart SSH service
-    service:
-      name: ssh
-      state: restarted
+- name: Add public key to authorized_keys
+  authorized_key:
+    user: "{{ ansible_user }}"
+    key: "{{ pubkey }}"
+    state: present
