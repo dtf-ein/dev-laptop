@@ -3,6 +3,8 @@
 - name: Ubuntu developer tools
   include_role:
     name: "{{ galaxy_role }}"
+    apply:
+      become: yes
   loop:
     - geerlingguy.nodejs
     - geerlingguy.docker
@@ -13,6 +15,5 @@
   loop_control:
     loop_var: galaxy_role
   vars:
-    - ansible_become: yes
     - nodejs_version: "10.x"
 

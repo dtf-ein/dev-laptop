@@ -6,6 +6,6 @@
 - import_tasks: ssh-debian.yml
   when: ansible_facts['os_family'] == 'Debian' and pubkey is defined
 
-#- name: Enable RDP
-#  import_tasks: xrdp-debian.yml
-#  when: ansible_facts['os_family'] == 'Debian'
+- name: Enable RDP
+  import_tasks: xrdp-debian.yml
+  when: ansible_facts['os_family'] == 'Debian'
