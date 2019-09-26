@@ -1,5 +1,5 @@
 ---
-- hosts: "{{ host | default('all') }}"
+- hosts: all
   roles:
     - common
     - developer
