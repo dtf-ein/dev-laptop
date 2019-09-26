@@ -2,9 +2,7 @@
 
 #Setup a dev laptop for Docker and Terraform development
 
-apt-get update && 
-apt-get install software-properties-common -y &&
-apt-add-repository ppa:ansible/ansible -y &&
-apt-get update && 
-apt-get install ansible -y &&
-apt-get install ansible-lint -y
+apt update
+apt install software-properties-common -y
+apt-add-repository --yes --update ppa:ansible/ansible
+DEBIAN_FRONTEND=noninteractive apt install ansible ansible-lint -y
