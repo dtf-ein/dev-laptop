@@ -1,13 +1,11 @@
 ---
 
 - name: Install Ubuntu desktop and xrdp
-  become: yes
   apt:
     pkg:
       - ubuntu-desktop
       - xrdp
     state: present
-    update_cache: yes
 
 - name: Allow xrdp to listen on port 443
   become: yes
@@ -29,4 +27,3 @@
     name: xrdp
     state: restarted
     enabled: yes
-

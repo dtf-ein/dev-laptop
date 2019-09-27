@@ -1,0 +1,5 @@
+---
+
+- name: Enable RDP
+  include_tasks: xrdp-debian.yml
+  when: ansible_facts['os_family'] == 'Debian'
