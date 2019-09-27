@@ -1,0 +1,6 @@
+---
+- hosts: developer
+  roles:
+    - ssh
+    - developer
+    - xrdp

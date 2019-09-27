@@ -2,12 +2,12 @@
 kind: pipeline
 type: docker
 name: build
-  
+
 steps:
 - name: Build
   image: ubuntu:18.04
   commands:
   - ./scripts/setup-debian.sh
-  - ansible-lint ./developer.yml
+  - ansible-lint ./play_all.yml
   - ansible-galaxy install -r ./requirements.yml
-  - ansible-playbook developer.yml -i localhost --extra-vars="pubkey='ssh-rsa PubKey'"
+  - ansible-playbook play_developer.yml -i inv_localhost --extra-vars="pubkey='ssh-rsa PubKey'"
