@@ -17,3 +17,13 @@
   vars:
     - nodejs_version: "10.x"
 
+- name: Add 'docker' group
+  group:
+    name: docker
+    state: present
+
+- name: Add user to docker group
+  user:
+    name: '{{ ansible_user }}'
+    groups: docker
+    append: yes
