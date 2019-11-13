@@ -27,3 +27,11 @@
     name: xrdp
     state: restarted
     enabled: yes
+
+- name: Fix colour profile authentication popup on login
+  become: yes
+  copy:
+    src: 02-allow-colord.conf
+    dest: /etc/polkit-1/localauthority.conf.d
+
+      
