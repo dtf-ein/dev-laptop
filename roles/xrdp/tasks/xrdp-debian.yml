@@ -3,7 +3,7 @@
 - name: Install Ubuntu desktop and xrdp
   apt:
     pkg:
-      - ubuntu-desktop
+      - xfce4
       - xrdp
     state: present
 
@@ -33,5 +33,3 @@
   copy:
     src: 02-allow-colord.conf
     dest: /etc/polkit-1/localauthority.conf.d
-
-      
