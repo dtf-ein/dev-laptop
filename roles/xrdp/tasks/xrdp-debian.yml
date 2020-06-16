@@ -3,7 +3,7 @@
 - name: Install Ubuntu desktop and xrdp
   apt:
     pkg:
-      - xfce4
+      - ubuntu-desktop
       - xrdp
     state: present
 

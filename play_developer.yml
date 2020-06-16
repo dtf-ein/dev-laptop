@@ -1,5 +1,6 @@
 ---
 - hosts: developer
+  become: yes
   roles:
     - ssh
     - developer
